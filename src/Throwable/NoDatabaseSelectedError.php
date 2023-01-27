@@ -1,12 +1,15 @@
 <?php
 
-/*
- * PHP-DB (https://github.com/delight-im/PHP-DB)
- * Copyright (c) delight.im (https://www.delight.im/)
- * Licensed under the MIT License (https://opensource.org/licenses/MIT)
+/**
+ * Pinga DB
+ *
+ * Written in 2023 by Taras Kondratyuk (https://getpinga.com)
+ * Based on PHP-DB (https://github.com/delight-im/PHP-DB) by delight.im (https://www.delight.im/)
+ *
+ * @license MIT
  */
 
-namespace Delight\Db\Throwable;
+namespace Pinga\Db\Throwable;
 
 /** Error that is thrown when no database has been selected */
 class NoDatabaseSelectedError extends Error {}
