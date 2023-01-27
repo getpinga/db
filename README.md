@@ -1,6 +1,6 @@
 # Pinga DB
 
-Safe and convenient SQL database access in a driver-agnostic way
+Safe and convenient SQL database access in a driver-agnostic way. Soon Swoole support to be added.
 
 ## Features
 
