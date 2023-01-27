@@ -7,7 +7,7 @@
 	},
 	"type": "library",
 	"keywords": [ "database", "sql", "pdo", "mysql", "postgresql", "pgsql", "sqlite" ],
-	"homepage": "https://github.com/getpinga/pinga-db",
+	"homepage": "https://github.com/getpinga/db",
 	"license": "MIT",
 	"autoload": {
 		"psr-4": {
