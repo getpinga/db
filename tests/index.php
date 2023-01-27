@@ -1,9 +1,12 @@
 <?php
 
-/*
- * PHP-DB (https://github.com/delight-im/PHP-DB)
- * Copyright (c) delight.im (https://www.delight.im/)
- * Licensed under the MIT License (https://opensource.org/licenses/MIT)
+/**
+ * Pinga DB
+ *
+ * Written in 2023 by Taras Kondratyuk (https://getpinga.com)
+ * Based on PHP-DB (https://github.com/delight-im/PHP-DB) by delight.im (https://www.delight.im/)
+ *
+ * @license MIT
  */
 
 // enable error reporting
@@ -19,8 +22,8 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-$db = \Delight\Db\PdoDatabase::fromDsn(
-	new \Delight\Db\PdoDsn(
+$db = \Pinga\Db\PdoDatabase::fromDsn(
+	new \Pinga\Db\PdoDsn(
 		'mysql:dbname=my-database;host=localhost;charset=utf8mb4',
 		'my-username',
 		'my-password'
