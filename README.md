@@ -20,7 +20,7 @@ Safe and convenient SQL database access in a driver-agnostic way. Soon Swoole su
  1. Include the library via Composer [[?]](https://github.com/delight-im/Knowledge/blob/master/Composer%20(PHP).md):
 
     ```
-    $ composer require delight-im/db
+    $ composer require pinga/db
     ```
 
  1. Include the Composer autoloader:
