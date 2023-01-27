@@ -1,23 +1,26 @@
 <?php
 
-/*
- * PHP-DB (https://github.com/delight-im/PHP-DB)
- * Copyright (c) delight.im (https://www.delight.im/)
- * Licensed under the MIT License (https://opensource.org/licenses/MIT)
+/**
+ * Pinga DB
+ *
+ * Written in 2023 by Taras Kondratyuk (https://getpinga.com)
+ * Based on PHP-DB (https://github.com/delight-im/PHP-DB) by delight.im (https://www.delight.im/)
+ *
+ * @license MIT
  */
 
-namespace Delight\Db;
+namespace Pinga\Db;
 
 use PDOException;
-use Delight\Db\Throwable\DatabaseNotFoundError;
-use Delight\Db\Throwable\Error;
-use Delight\Db\Throwable\Exception;
-use Delight\Db\Throwable\IntegrityConstraintViolationException;
-use Delight\Db\Throwable\NoDatabaseSelectedError;
-use Delight\Db\Throwable\SyntaxError;
-use Delight\Db\Throwable\TableNotFoundError;
-use Delight\Db\Throwable\UnknownColumnError;
-use Delight\Db\Throwable\WrongCredentialsError;
+use Pinga\Db\Throwable\DatabaseNotFoundError;
+use Pinga\Db\Throwable\Error;
+use Pinga\Db\Throwable\Exception;
+use Pinga\Db\Throwable\IntegrityConstraintViolationException;
+use Pinga\Db\Throwable\NoDatabaseSelectedError;
+use Pinga\Db\Throwable\SyntaxError;
+use Pinga\Db\Throwable\TableNotFoundError;
+use Pinga\Db\Throwable\UnknownColumnError;
+use Pinga\Db\Throwable\WrongCredentialsError;
 
 /**
  * Handles, processes and re-throws exceptions and errors
