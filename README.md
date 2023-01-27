@@ -1,4 +1,4 @@
-# PHP-DB
+# Pinga DB
 
 Safe and convenient SQL database access in a driver-agnostic way
 
