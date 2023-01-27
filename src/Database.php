@@ -1,18 +1,21 @@
 <?php
 
-/*
- * PHP-DB (https://github.com/delight-im/PHP-DB)
- * Copyright (c) delight.im (https://www.delight.im/)
- * Licensed under the MIT License (https://opensource.org/licenses/MIT)
+/**
+ * Pinga DB
+ *
+ * Written in 2023 by Taras Kondratyuk (https://getpinga.com)
+ * Based on PHP-DB (https://github.com/delight-im/PHP-DB) by delight.im (https://www.delight.im/)
+ *
+ * @license MIT
  */
 
-namespace Delight\Db;
+namespace Pinga\Db;
 
-use Delight\Db\Throwable\BeginTransactionFailureException;
-use Delight\Db\Throwable\CommitTransactionFailureException;
-use Delight\Db\Throwable\IntegrityConstraintViolationException;
-use Delight\Db\Throwable\RollBackTransactionFailureException;
-use Delight\Db\Throwable\TransactionFailureException;
+use Pinga\Db\Throwable\BeginTransactionFailureException;
+use Pinga\Db\Throwable\CommitTransactionFailureException;
+use Pinga\Db\Throwable\IntegrityConstraintViolationException;
+use Pinga\Db\Throwable\RollBackTransactionFailureException;
+use Pinga\Db\Throwable\TransactionFailureException;
 
 /** Safe and convenient SQL database access in a driver-agnostic way */
 interface Database {
