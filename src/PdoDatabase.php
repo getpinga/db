@@ -16,6 +16,7 @@ use PDOException;
 use PDOStatement;
 use Pinga\Db\Throwable\BeginTransactionFailureException;
 use Pinga\Db\Throwable\CommitTransactionFailureException;
+use Pinga\Db\Throwable\Exception;
 use Pinga\Db\Throwable\EmptyValueListError;
 use Pinga\Db\Throwable\EmptyWhereClauseError;
 use Pinga\Db\Throwable\RollBackTransactionFailureException;
@@ -89,14 +90,8 @@ final class PdoDatabase implements Database {
 	 * @param bool|null (optional) $preserveOldState whether the old state of the PDO instance should be preserved
 	 * @return static the new instance
 	 */
-	public static function fromPdo($pdoInstance, $preserveOldState = null) {
-		if ($pdoInstance instanceof PDO) {
-                   return new static($pdoInstance, null, $preserveOldState);
-		} else if ($pdoInstance instanceof Swoole\Coroutine\MySQL) {
-                   return new static($pdoInstance, null, $preserveOldState);
-                } else {
-                   throw new Exception("Invalid argument type. Expected PDO or Swoole\Coroutine\MySQL.");
-                }
+	public static function fromPdo(PDO $pdoInstance, $preserveOldState = null) {
+		return new static($pdoInstance, null, $preserveOldState);
 	}
 
 	/**
@@ -479,18 +474,7 @@ final class PdoDatabase implements Database {
 	private function ensureConnected() {
 		if ($this->pdo === null) {
 			try {
-				if (strpos(php_sapi_name(), 'swoole') !== false) {
-					if ($this->driverName === PdoDataSource::DRIVER_NAME_MYSQL) {
-					    $this->pdo = new \Swoole\Coroutine\Mysql($this->dsn->getDsn(), $this->dsn->getUsername(), $this->dsn->getPassword());
-					} elseif ($this->driverName === PdoDataSource::DRIVER_NAME_POSTGRESQL) {
-					    $this->pdo = new \Swoole\Coroutine\PostgreSQL($this->dsn->getDsn(), $this->dsn->getUsername(), $this->dsn->getPassword());
-					} else {
-					    $this->pdo = "";
-					}
-                                } else {
-                                   $this->pdo = new PDO($this->dsn->getDsn(), $this->dsn->getUsername(), $this->dsn->getPassword());
-                                }
-				
+				$this->pdo = new PDO($this->dsn->getDsn(), $this->dsn->getUsername(), $this->dsn->getPassword());
 			}
 			catch (PDOException $e) {
 				ErrorHandler::rethrow($e);
