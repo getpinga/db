@@ -473,7 +473,18 @@ final class PdoDatabase implements Database {
 	private function ensureConnected() {
 		if ($this->pdo === null) {
 			try {
-				$this->pdo = new PDO($this->dsn->getDsn(), $this->dsn->getUsername(), $this->dsn->getPassword());
+				if (strpos(php_sapi_name(), 'swoole') !== false) {
+					if ($this->driverName === PdoDataSource::DRIVER_NAME_MYSQL) {
+					    $this->pdo = new \Swoole\Coroutine\Mysql($this->dsn->getDsn(), $this->dsn->getUsername(), $this->dsn->getPassword());
+					} elseif ($this->driverName === PdoDataSource::DRIVER_NAME_POSTGRESQL) {
+					    $this->pdo = new \Swoole\Coroutine\PostgreSQL($this->dsn->getDsn(), $this->dsn->getUsername(), $this->dsn->getPassword());
+					} else {
+					    $this->pdo = "";
+					}
+                                } else {
+                                   $this->pdo = new PDO($this->dsn->getDsn(), $this->dsn->getUsername(), $this->dsn->getPassword());
+                                }
+				
 			}
 			catch (PDOException $e) {
 				ErrorHandler::rethrow($e);
