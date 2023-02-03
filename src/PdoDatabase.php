@@ -89,8 +89,14 @@ final class PdoDatabase implements Database {
 	 * @param bool|null (optional) $preserveOldState whether the old state of the PDO instance should be preserved
 	 * @return static the new instance
 	 */
-	public static function fromPdo(PDO $pdoInstance, $preserveOldState = null) {
-		return new static($pdoInstance, null, $preserveOldState);
+	public static function fromPdo($pdoInstance, $preserveOldState = null) {
+		if ($pdoInstance instanceof PDO) {
+                   return new static($pdoInstance, null, $preserveOldState);
+		} else if ($pdoInstance instanceof Swoole\Coroutine\MySQL) {
+                   return new static($pdoInstance, null, $preserveOldState);
+                } else {
+                   throw new Exception("Invalid argument type. Expected PDO or Swoole\Coroutine\MySQL.");
+                }
 	}
 
 	/**
