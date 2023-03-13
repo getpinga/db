@@ -1,6 +1,6 @@
 # Pinga DB
 
-Safe and convenient SQL database access in a driver-agnostic way. Soon Swoole support to be added.
+Safe and convenient SQL database access in a driver-agnostic way.
 
 ## Features
 
@@ -12,18 +12,18 @@ Safe and convenient SQL database access in a driver-agnostic way. Soon Swoole su
 
 ## Requirements
 
- * PHP 5.6.0+
-   * PDO extension
+ * PHP 8.1.0+
+ * PDO extension
 
 ## Installation
 
- 1. Include the library via Composer [[?]](https://github.com/delight-im/Knowledge/blob/master/Composer%20(PHP).md):
+ 1. Include the library via Composer:
 
     ```
     $ composer require pinga/db
     ```
 
- 1. Include the Composer autoloader:
+ 2. Include the Composer autoloader:
 
     ```php
     require __DIR__ . '/vendor/autoload.php';
@@ -36,15 +36,15 @@ Safe and convenient SQL database access in a driver-agnostic way. Soon Swoole su
  * From a dynamic database configuration:
 
    ```php
-   $dataSource = new \Delight\Db\PdoDataSource('mysql'); // see "Available drivers for database systems" below
+   $dataSource = new \Pinga\Db\PdoDataSource('mysql'); // see "Available drivers for database systems" below
    $dataSource->setHostname('localhost');
    $dataSource->setPort(3306);
-   $dataSource->setDatabaseName('my-database');
+   $dataSource->setDatabaseName('mydatabase');
    $dataSource->setCharset('utf8mb4');
-   $dataSource->setUsername('my-username');
-   $dataSource->setPassword('my-password');
+   $dataSource->setUsername('myusername');
+   $dataSource->setPassword('mypassword');
 
-   $db = \Delight\Db\PdoDatabase::fromDataSource($dataSource);
+   $db = \Pinga\Db\PdoDatabase::fromDataSource($dataSource);
    ```
 
    This is the most convenient way to establish the database connection since the correct DSN will be created for you automatically. You can use the various setters with a fluent interface in order to set up your configuration.
@@ -56,8 +56,8 @@ Safe and convenient SQL database access in a driver-agnostic way. Soon Swoole su
  * From a DSN (data source name):
 
    ```php
-   $db = \Delight\Db\PdoDatabase::fromDsn(
-       new \Delight\Db\PdoDsn(
+   $db = \Pinga\Db\PdoDatabase::fromDsn(
+       new \Pinga\Db\PdoDsn(
            'mysql:dbname=my-database;host=localhost',
            'my-username',
            'my-password'
@@ -74,7 +74,7 @@ Safe and convenient SQL database access in a driver-agnostic way. Soon Swoole su
    ```php
    // $pdo = new PDO('mysql:dbname=my-database;host=localhost;charset=utf8mb4', 'my-username', 'my-password');
 
-   $db = \Delight\Db\PdoDatabase::fromPdo($pdo);
+   $db = \Pinga\Db\PdoDatabase::fromPdo($pdo);
    ```
 
    This will not cause another database connection to be created but instead re-use the existing connection from the `PDO` instance that you provided.
@@ -84,15 +84,15 @@ Safe and convenient SQL database access in a driver-agnostic way. Soon Swoole su
    Just pass `true` as the second argument to the `fromPdo` method to completely preserve the original state of your `PDO` instance:
 
    ```php
-   $db = \Delight\Db\PdoDatabase::fromPdo($pdo, true);
+   $db = \Pinga\Db\PdoDatabase::fromPdo($pdo, true);
    ```
 
 #### Available drivers for database systems
 
 ```php
-\Delight\Db\PdoDataSource::DRIVER_NAME_MYSQL;
-\Delight\Db\PdoDataSource::DRIVER_NAME_POSTGRESQL;
-\Delight\Db\PdoDataSource::DRIVER_NAME_SQLITE;
+\Pinga\Db\PdoDataSource::DRIVER_NAME_MYSQL;
+\Pinga\Db\PdoDataSource::DRIVER_NAME_POSTGRESQL;
+\Pinga\Db\PdoDataSource::DRIVER_NAME_SQLITE;
 ```
 
 ### Selecting data
@@ -264,7 +264,7 @@ There's no need for you to escape any input manually. Just use the methods as sh
 In order to monitor query performance during development, you can enable performance profiling:
 
 ```php
-$db->setProfiler(new \Delight\Db\SimpleProfiler());
+$db->setProfiler(new \Pinga\Db\SimpleProfiler());
 ```
 
 Whenever you want to see the analyzed queries or store them in a log file, you can get all measurements recorded by the profiler as an array:
